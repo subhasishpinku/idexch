@@ -39,6 +39,8 @@ class LoginProvider with ChangeNotifier {
       } else {
         errorMessage = "Invalid credentials or token missing.";
       }
+    } on DioError catch (e) {
+      errorMessage = e.response?.data['message'] ?? "Login failed.";
     } catch (e) {
       errorMessage = "Login failed: ${e.toString()}";
     } finally {
